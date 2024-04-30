@@ -4,25 +4,24 @@ import json
 from rest_framework.decorators import api_view
 from rest_framework.request import Request
 from rest_framework.response import Response
-
+from api import serializers
 
 class Student:
-    name="hamza"
-    id="1"
-    mark=100
-# Create your views here.
+    def __init__(self,name,id,mark) -> None:
+        self.name=name
+        self.id=id
+        self.mark=mark
+
+# api_view handles the httprequests
 @api_view()
 def usersApi(request):
-    student=Student()
-    users=[
-        {
-            "name":"hamza",
-            "language":"python"
-        },
-        {
-            "name":"billal",
-            "language":"C++"
-        }
-    ]
-    return Response(student)
+    student1=Student("hamza",1,100)
+    student2=Student("billal",2,200)
+    student3=Student("primo",3,300)
+    response=serializers.StudentSerializer([
+        student1,
+        student2,
+        student3
+    ],many=True)  # tell that you're sending multiple object  
+    return Response(response.data)
 
