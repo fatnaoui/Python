@@ -6,9 +6,14 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 
 
+class Student:
+    name="hamza"
+    id="1"
+    mark=100
 # Create your views here.
 @api_view()
 def usersApi(request):
+    student=Student()
     users=[
         {
             "name":"hamza",
@@ -19,5 +24,5 @@ def usersApi(request):
             "language":"C++"
         }
     ]
-    return Response(users)
+    return Response(student)
 
