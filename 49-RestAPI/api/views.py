@@ -12,8 +12,12 @@ from rest_framework.generics import (
 )
 
 class ArticleListView(ListCreateAPIView):
-    queryset=models.Article.objects.all()
     serializer_class=serializers.ArticleSerializer
+    def get_queryset(self):
+        query={}
+        for key,value in self.request.GET.items():
+            query["{}__icontains".format(key)]=value
+        return models.Article.objects.filter(**query)
 
 class ArticleDetailtView(RetrieveUpdateAPIView):
     queryset=models.Article.objects.all()
