@@ -14,9 +14,9 @@ class Student:
 
 @api_view()
 def apiarticle(request):
-    articles=models.Article.objetcs.all()
+    articles=models.Article.objects.all()
     response=serializers.ArticleSerializer(articles,many=True)
-    return Response(response)
+    return Response(response.data)
 # api_view handles the httprequests
 @api_view()
 def usersApi(request):
