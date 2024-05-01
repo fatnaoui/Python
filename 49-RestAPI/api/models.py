@@ -3,6 +3,8 @@ from django.db import models
 # Create your models here.
 class Tag(models.Model):
     name=models.CharField(max_length=120)
+    def __str__(self):
+        return self.name
 
 class Article(models.Model):
     slug=models.SlugField(null=False,blank=False)  # not null in the database and not empty in frontend
