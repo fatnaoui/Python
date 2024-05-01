@@ -17,6 +17,12 @@ def apiarticle(request):
     articles=models.Article.objects.all()
     response=serializers.ArticleSerializer(articles,many=True)
     return Response(response.data)
+
+@api_view()
+def createarticleapi(request):
+    print(request.body)
+    return Response({"message":"hello"})
+
 # api_view handles the httprequests
 @api_view()
 def usersApi(request):
