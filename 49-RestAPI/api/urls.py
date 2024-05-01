@@ -1,7 +1,6 @@
 from django.urls import path
 from api import views
 urlpatterns=[
-    path('createarticleapi/',views.createarticleapi),
-    path('apiarticle/',views.apiarticle),
-    path('users/',views.usersApi)
+    path('articles/',views.ArticleListView.as_view()),
+    path('articles/<int:pk>',views.ArticleDetailtView.as_view()),
 ]

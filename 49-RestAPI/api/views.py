@@ -10,7 +10,7 @@ class ArticleListView(ListAPIView):
     queryset=models.Article.objects.all()
     serializer_class=serializers.ArticleSerializer
 
-class ArticDetailtView(RetrieveAPIView):
+class ArticleDetailtView(RetrieveAPIView):
     queryset=models.Article.objects.all()
     serializer_class=serializers.ArticleSerializer
 
