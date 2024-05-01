@@ -1,0 +1,1 @@
+This is your first step to dive into the world of RESAPI. You will begin by the basic in each commit. In this part you will see the powerful tools that Django provide to us to handle multiple API requests. 
