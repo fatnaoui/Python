@@ -5,6 +5,7 @@ from rest_framework.decorators import api_view
 from rest_framework.request import Request
 from rest_framework.response import Response
 from api import serializers,models
+import json
 
 class Student:
     def __init__(self,name,id,mark) -> None:
@@ -18,10 +19,15 @@ def apiarticle(request):
     response=serializers.ArticleSerializer(articles,many=True)
     return Response(response.data)
 
-@api_view()
+@api_view(['POST'])
 def createarticleapi(request):
-    print(request.body)
-    return Response({"message":"hello"})
+    body = json.loads(request.body)
+    response = serializers.ArticleSerializer(data=body)
+    if response.is_valid():
+        instance=response.save()
+        response = serializers.ArticleSerializer(instance)
+        return Response(response.data)
+    return Response(response.errors)
 
 # api_view handles the httprequests
 @api_view()
